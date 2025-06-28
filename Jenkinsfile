@@ -13,7 +13,8 @@ pipeline {
             steps {
                 echo 'executing commands'
                 sh '''
-                    cleanWs()
+                    export NPM_CONFIG_CACHE=$(pwd)/.npm-cache
+                    mkdir -p $NPM_CONFIG_CACHE
                     ls -la
                     node --version
                     npm --version
