@@ -67,16 +67,8 @@ pipeline {
              }
 
         }
-        
-    }
 
-    post{
-        always{
-            junit 'tests-results/junit.xml'
-        }
-    }
-
-    stage('Deploy') {
+         stage('Deploy') {
             agent {
                
                 docker {
@@ -92,4 +84,14 @@ pipeline {
                 '''
             }
         }
+        
+    }
+
+    post{
+        always{
+            junit 'tests-results/junit.xml'
+        }
+    }
+
+   
 }
