@@ -75,4 +75,21 @@ pipeline {
             junit 'tests-results/junit.xml'
         }
     }
+
+    stage('Deploy') {
+            agent {
+               
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                echo 'executing netlify deploy'
+                sh '''
+                   npm install netlify-cli -g
+                   netlify --version
+                '''
+            }
+        }
 }
